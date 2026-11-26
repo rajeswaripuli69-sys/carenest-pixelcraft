@@ -1,7 +1,4 @@
-document.body.insertAdjacentHTML(
-  "afterbegin",
-  '<div style="background:#d1fae5;color:#065f46;padding:15px;text-align:center;font-weight:bold">CareNest JavaScript is EXECUTING</div>'
-);
+
 const STORAGE_KEY = "carenest_pixelcraft_v1";
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
