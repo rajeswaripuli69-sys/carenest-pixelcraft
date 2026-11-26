@@ -131,7 +131,7 @@ function renderRecords() {
 }
 function renderParent() {
   const medicines = state.medicines.filter(m => m.active);
-  return `${pageHeader("A SIMPLER VIEW", "Hello, ${escapeHTML(state.profile.parentName || "Amma")}", "A clear, easy-to-read view of today's medicines.")}
+ return `${pageHeader("A SIMPLER VIEW", "Hello, " + escapeHTML(state.profile.parentName || "Amma"), "A clear, easy-to-read view of today's medicines.")} 
     <div class="parent-panel"><span class="banner-tag">YOUR DAILY HEALTH ROUTINE</span><h2>One step at a time.</h2><p>Check each medicine after taking it. If you are unsure, ask your family member or healthcare professional.</p></div>
     <div class="page-toolbar"><strong style="font-size:16px">Today's medicines</strong><span class="date-chip">${new Date().toLocaleDateString("en-IN",{day:"numeric",month:"short"})}</span></div>
     <div class="parent-big-list">${medicines.map(m => medicineCard(m,true)).join("") || `<div class="empty-state"><strong>No medicines added</strong>Your family member can add the schedule.</div>`}</div>
