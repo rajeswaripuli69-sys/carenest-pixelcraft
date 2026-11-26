@@ -1,11 +1,4 @@
-
-document.addEventListener("click", function(event) {
-  const button = event.target.closest("#parentModeButton");
-
-  if (button) {
-    alert("CareNest JavaScript is running! Parent Mode click detected.");
-  }
-});
+alert("CareNest app.js started successfully!");
 const STORAGE_KEY = "carenest_pixelcraft_v1";
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
