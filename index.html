@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#147d73">
+  <meta name="description" content="CareNest helps families organize medicines and health records for elderly parents.">
+  <title>CareNest — Family Health Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="CareNest home" data-nav="home">
+        <span class="brand-mark">✚</span>
+        <span>Care<span>Nest</span><small>FAMILY HEALTH COMPANION</small></span>
+      </a>
+      <button class="avatar-button" id="profileButton" aria-label="Profile">RP</button>
+    </header>
+
+    <main id="appMain">
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow" id="todayLabel">YOUR FAMILY SPACE</p>
+          <h1>Hello, Rajeswari <span class="wave">✦</span></h1>
+          <p class="muted">Let's make today a little healthier.</p>
+        </div>
+        <button class="mode-pill" id="parentModeButton"><span>◉</span> Parent mode</button>
+      </section>
+
+      <section class="health-banner">
+        <div class="banner-copy">
+          <span class="banner-tag">FAMILY HEALTH OVERVIEW</span>
+          <h2>Care that keeps<br>everyone connected.</h2>
+          <p>Keep medicines, reports and daily care in one simple place.</p>
+        </div>
+        <div class="banner-art" aria-hidden="true">
+          <div class="art-circle"></div><div class="art-heart">♡</div>
+          <div class="art-plus">+</div><div class="art-leaf">✦</div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div><p class="eyebrow">AT A GLANCE</p><h2>Health overview</h2></div>
+          <span class="date-chip" id="dateChip">Today</span>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card">
+            <span class="stat-icon mint">▦</span><strong id="medicineCount">0</strong>
+            <span>Active medicines</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon peach">◷</span><strong id="todayTaken">0/0</strong>
+            <span>Today's doses taken</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon lavender">▤</span><strong id="reportCount">0</strong>
+            <span>Health reports</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div><p class="eyebrow">STAY ON TRACK</p><h2>Today's medicines</h2></div>
+          <button class="text-button" data-nav="medicines">View all <span>→</span></button>
+        </div>
+        <div id="todayMedicineList" class="medicine-list"></div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div><p class="eyebrow">YOUR FAMILY'S FILES</p><h2>Recent reports</h2></div>
+          <button class="text-button" data-nav="records">See all <span>→</span></button>
+        </div>
+        <div id="recentReports" class="report-list"></div>
+      </section>
+
+      <section class="tip-card">
+        <span class="tip-icon">✧</span>
+        <div><strong>A gentle reminder</strong><p>Keep your parent's medicine list up to date and check with their healthcare professional before making any changes.</p></div>
+      </section>
+    </main>
+
+    <main id="pageMain" class="page-main hidden" aria-live="polite"></main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-nav="home"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-nav="medicines"><span>♡</span><small>Medicines</small></button>
+      <button class="nav-item add-nav" id="quickAddButton" aria-label="Add medicine"><span>＋</span></button>
+      <button class="nav-item" data-nav="records"><span>▤</span><small>Records</small></button>
+      <button class="nav-item" data-nav="parent"><span>☻</span><small>Parent</small></button>
+    </nav>
+  </div>
+
+  <dialog id="medicineDialog" class="app-dialog">
+    <form id="medicineForm" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">MEDICINE DETAILS</p><h2>Add a medicine</h2></div><button type="button" class="icon-button" data-close="medicineDialog" aria-label="Close">×</button></div>
+      <label>Medicine name<input name="name" required maxlength="50" placeholder="e.g. Vitamin D3"></label>
+      <div class="form-row">
+        <label>Dosage<input name="dose" required maxlength="30" placeholder="e.g. 1 tablet"></label>
+        <label>Time<select name="time"><option>Morning</option><option>Afternoon</option><option>Evening</option><option>Night</option></select></label>
+      </div>
+      <label>Instructions <span class="optional">(optional)</span><input name="instructions" maxlength="100" placeholder="e.g. After food"></label>
+      <label>For<input name="person" maxlength="40" value="Amma" placeholder="Parent's name"></label>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close="medicineDialog">Cancel</button><button class="button primary" type="submit">Save medicine</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="reportDialog" class="app-dialog">
+    <form id="reportForm" method="dialog">
+      <div class="dialog-heading"><div><p class="eyebrow">HEALTH DOCUMENT</p><h2>Add a report</h2></div><button type="button" class="icon-button" data-close="reportDialog" aria-label="Close">×</button></div>
+      <label>Report title<input name="title" required maxlength="60" placeholder="e.g. Blood test report"></label>
+      <div class="form-row">
+        <label>Category<select name="category"><option>Blood Test</option><option>Prescription</option><option>Scan / X-ray</option><option>Other</option></select></label>
+        <label>Report date<input name="date" type="date" required></label>
+      </div>
+      <label>Choose PDF or image<input name="file" type="file" accept=".pdf,image/*" required></label>
+      <p class="field-note">Demo storage limit: files up to 1 MB. Documents stay in this browser on this device.</p>
+      <div class="dialog-actions"><button type="button" class="button secondary" data-close="reportDialog">Cancel</button><button class="button primary" type="submit">Save report</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
