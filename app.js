@@ -24,12 +24,12 @@ let toastTimer;
 function loadState() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return structuredClone(starterData);
+    if (!saved) return JSON.parse(JSON.stringify(starterData));
     const parsed = JSON.parse(saved);
-    return { ...structuredClone(starterData), ...parsed };
+    return { ...JSON.parse(JSON.stringify(starterData)), ...parsed };
   } catch (error) {
     console.warn("CareNest data could not be loaded:", error);
-    return structuredClone(starterData);
+    return JSON.parse(JSON.stringify(starterData));
   }
 }
 function saveState() {
